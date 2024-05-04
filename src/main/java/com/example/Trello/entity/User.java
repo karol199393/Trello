@@ -1,11 +1,15 @@
 package com.example.Trello.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
 @Table(name = "users")
 @Entity
+@Getter
+@Setter
 public class User {
 
     @Id
