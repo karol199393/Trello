@@ -1,9 +1,13 @@
 package com.example.Trello.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
+@Getter
+@Setter
 @Table(name = "tasks")
 @Entity
 public class Task {
