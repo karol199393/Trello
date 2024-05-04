@@ -12,20 +12,26 @@ import java.util.List;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
-     private final TaskService taskService;
+    private final TaskService taskService;
 
-     public TaskController(TaskService taskService) {
-         this.taskService = taskService;
-     }
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
-     @GetMapping("/tasks")
-     public ResponseEntity<List<Task>> getAllTrainings() {
-         List<Task> trainings = taskService.getAllTasks();
-         return new ResponseEntity<>(trainings, HttpStatus.OK);
-     }
+    @GetMapping("/tasks")
+    public ResponseEntity<List<Task>> getAllTrainings() {
+        List<Task> trainings = taskService.getAllTasks();
+        return new ResponseEntity<>(trainings, HttpStatus.OK);
+    }
 
-     @GetMapping("/tasks/{id}")
-     public Task getTaskById(@PathVariable Long id) {
-         return taskService.getTaskById(id); }
+    @GetMapping("/tasks/{id}")
+    public Task getTaskById(@PathVariable Long id) {
+        return taskService.getTaskById(id);
+    }
 
+    @PostMapping("/tasks/{taskId}/assign/{userId}")
+    public ResponseEntity<Task> assignTaskToUser(@PathVariable Long taskId, @PathVariable Long userId) {
+        Task task = taskService.assignTaskToUser(taskId, userId);
+        return new ResponseEntity<>(task, HttpStatus.OK);
+    }
 }

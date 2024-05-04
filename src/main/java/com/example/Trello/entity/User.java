@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Table(name = "users")
 @Entity
@@ -22,4 +24,7 @@ public class User {
     private String password;
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Task> tasks;
 }
