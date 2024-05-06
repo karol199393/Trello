@@ -1,13 +1,14 @@
 package com.example.Trello;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TrelloApplicationTests {
+public class TrelloApplicationTests {
 
 	@Test
-	void contextLoads() {
+    public void contextLoads() {
 	}
 
 }
