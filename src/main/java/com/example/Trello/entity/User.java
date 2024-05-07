@@ -33,12 +33,19 @@ public class User {
     private List<Task> tasks;
 
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles;
+    @ElementCollection(fetch = FetchType.EAGER) private List<String> roles;
+
+
 
     public Collection<? extends GrantedAuthority> getRoles() {
         return roles.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
+    }
+
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
     }
 }
