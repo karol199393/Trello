@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -49,14 +50,12 @@ public void testRegisterUser() throws Exception {
 }
     @Test
     public void testRegisterUserWithInvalidData() throws Exception {
-        User newUser = new User("testUser", "testPassword", "test@Email");
-        when(registerService.registerUser(newUser)).thenReturn(newUser);
-
+        // Nie próbujemy rzucać wyjątku, tylko oczekujemy statusu BadRequest
         mockMvc.perform(post("/api/v1/register")
                         .with(csrf())
                         .with(user("username").password("password"))
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"username\": \"\", \"password\": \"\", \"email\": \"\" }"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{ \"username\": \"\", \"password\": \"\", \"email\": \"\" }"))
                 .andExpect(status().isBadRequest());
     }
 
