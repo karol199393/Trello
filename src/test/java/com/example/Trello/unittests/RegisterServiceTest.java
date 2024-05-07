@@ -1,7 +1,8 @@
-package com.example.Trello.service;
+package com.example.Trello.unittests;
 
 import com.example.Trello.entity.User;
 import com.example.Trello.repository.UserRepository;
+import com.example.Trello.service.RegisterService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
