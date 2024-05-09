@@ -59,4 +59,14 @@ public void testRegisterUser() throws Exception {
                 .andExpect(status().isBadRequest());
     }
 
+    public void testRegisterUserWithInvalidMailField() throws Exception {
+
+        mockMvc.perform(post("/api/v1/register")
+                        .with(csrf())
+                        .with(user("username").password("password"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{ \"username\": \"exampleUsername\", \"password\": \"examplePassword\", \"email\": \"bademail\" }"))
+                .andExpect(status().isBadRequest());
+    }
+
 }

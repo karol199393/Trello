@@ -1,5 +1,4 @@
 package com.example.Trello.unittests;
-
 import com.example.Trello.entity.User;
 import com.example.Trello.repository.UserRepository;
 import com.example.Trello.service.RegisterService;
@@ -9,9 +8,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
