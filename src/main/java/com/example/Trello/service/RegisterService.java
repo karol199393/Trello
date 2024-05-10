@@ -25,6 +25,9 @@ public class RegisterService {
         userRepository.deleteById(id);
     }
     public User registerUser(User user) {
+        if(user.getUsername() == null || user.getPassword() == null ||user.getEmail() == null) {
+            throw new RuntimeException("Username or password cannot be null");
+        }
         Optional<User> existingUser = Optional.ofNullable(userRepository.findByUsername(user.getUsername()));
         if (existingUser.isPresent()) {
             throw new RuntimeException("User already exists");

@@ -59,6 +59,7 @@ public void testRegisterUser() throws Exception {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
     public void testRegisterUserWithInvalidMailField() throws Exception {
 
         mockMvc.perform(post("/api/v1/register")
