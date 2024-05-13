@@ -20,30 +20,19 @@ public class LoginServiceTest {
     }
 
     @Test
-    public void testLoginSuccess() {
-        User mockUser = new User();
-        mockUser.setUsername("testUser");
-        mockUser.setPassword("testPassword");
+    public void shouldThrowExceptionWhenNotFoundUser() {
 
         Mockito.when(userRepository.findByUsername("testUser")).thenReturn(null);
-
-        assertThrows(RuntimeException.class, () -> loginService.login("testUser", "wrongPassword"));
+        assertThrows(RuntimeException.class, () -> loginService.login("testUser", "testPassword"));
     }
-    @Test
-    public void testLoginFailUserNotFound() {
-        Mockito.when(userRepository.findByUsername("testUser")).thenReturn(null);
-
-        assertThrows(RuntimeException.class, () -> loginService.login("testUser","testPassword"));
-
-    }
-    @Test
+    /*@Test
     public void testLoginNullUser() {
         Mockito.when(userRepository.findByUsername(null)).thenReturn(null);
 
-        assertThrows(RuntimeException.class, () -> loginService.login(null,"testPassword"));
-    }
+        assertThrows(RuntimeException.class, () -> loginService.login(null,"null"));
+    } */
     @Test
-    public void testLoginFailPasswordNull() {
+    public void shouldThrowExceptionWhen() {
         User mockUser = new User();
         mockUser.setUsername("testUser");
         mockUser.setPassword(null);

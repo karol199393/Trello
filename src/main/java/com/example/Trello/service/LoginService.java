@@ -13,21 +13,27 @@ public class LoginService {
     }
 
     public User login(String username,String password) {
-        User user = userRepository.findByUsername(username);
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
-        }
-        if(user == null) {
-            throw new RuntimeException("User cannot be null");
-        }
-        if (!user.getUsername().equals(username)) {
-            throw new RuntimeException("User not found");
-        }
-        if(user.getPassword() == null)
-            throw new RuntimeException("Password cannot be null");
-        if (!user.getPassword().equals(password)) {
-            throw new RuntimeException("Incorrect password");
+        if(password!=null) {
+            User user = userRepository.findByUsername(username);
+            if (user != null && user.getPassword().equals(password)) {
+                return user;
+            }
+            if (user == null) {
+                throw new RuntimeException("User cannot be null");
+            }
+            if (!user.getUsername().equals(username)) {
+                throw new RuntimeException("User not found");
+            }
+            if (user.getPassword() == null)
+                throw new RuntimeException("Password cannot be null");
+            if (!user.getPassword().equals(password)) {
+                throw new RuntimeException("Incorrect password");
+            }
+            if (username == null)
+                throw new RuntimeException("Username cannot be null");
+
         }
         return null;
     }
 }
+
