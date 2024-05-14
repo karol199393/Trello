@@ -32,7 +32,7 @@ public class LoginServiceTest {
         assertThrows(RuntimeException.class, () -> loginService.login(null,"null"));
     } */
     @Test
-    public void shouldThrowExceptionWhen() {
+    public void shouldThrowExceptionWhenProviedPasswordIsNull() {
         User mockUser = new User();
         mockUser.setUsername("testUser");
         mockUser.setPassword(null);
@@ -42,7 +42,7 @@ public class LoginServiceTest {
         assertThrows(RuntimeException.class, () -> loginService.login("testUser",null));
     }
     @Test
-    public void testLoginFailPasswordWrong() {
+    public void shouldThrowExceptionWhenPasswordDoesNotMatch() {
         User mockUser = new User();
         mockUser.setUsername("testUser");
         mockUser.setPassword("testPassword");
@@ -52,7 +52,7 @@ public class LoginServiceTest {
         assertThrows(RuntimeException.class, () -> loginService.login("testUser","wrongPassword"));
     }
     @Test
-    public void testLoginFailPasswordNullUser() {
+    public void shouldThrowExceptionWhenPasswordIsNull() {
         User mockUser = new User();
         mockUser.setUsername("testUser");
         mockUser.setPassword(null);
@@ -63,13 +63,11 @@ public class LoginServiceTest {
     }
 
     @Test
-    public void testUsernamenullPasswordOK() {
+    public void shouldThrowExceptionWhenUsernameIsNull() {
         User mockUser = new User();
         mockUser.setUsername(null);
         mockUser.setPassword("testPassword");
-
         Mockito.when(userRepository.findByUsername(null)).thenReturn(mockUser);
-
         assertThrows(RuntimeException.class, () -> loginService.login(null,"testPassword"));
     }
 }
